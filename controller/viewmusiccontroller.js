@@ -16,9 +16,9 @@ const viewmusic = async (req, res) => {
     }
 
     // Allow any authenticated user to view music
-    const musics = await Music.find({}).populate("artist", "_id");
+    const musics = await Music.find({}).populate("artist", "username" );
 
-    return res.status(200).json({ success: true, musics });
+    return res.status(200).json({ success: true, musics , message: "Musics fetched successfully" });
   } catch (error) {
     console.error("viewmusic error:", error);
     return res.status(500).json({ success: false, message: "Server error" });
